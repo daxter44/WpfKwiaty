@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -15,19 +13,20 @@ using System.Windows.Shapes;
 namespace WpfKwiaty
 {
     /// <summary>
-    /// Interaction logic for CreatePlant.xaml
+    /// Logika interakcji dla klasy DeletePlant.xaml
     /// </summary>
-    public partial class CreatePlant : Window
+    public partial class DeletePlant : Window
     {
-
-        public CreatePlant()
+        public DeletePlant()
         {
             InitializeComponent();
+
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void DeleteButton(object sender, RoutedEventArgs e)
         {
             Close();
         }
+
     }
 }

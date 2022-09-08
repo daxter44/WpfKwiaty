@@ -52,7 +52,7 @@ namespace WpfKwiaty
             plants.Add(plant2);
             plants.Add(plant3);
         }
-        private void Button_Click(object sender, RoutedEventArgs e)
+        public void Button_Click(object sender, RoutedEventArgs e)
         {
             CreatePlant cp = new CreatePlant();
             cp.ShowDialog();
@@ -63,6 +63,32 @@ namespace WpfKwiaty
             newPlant.id = lastPlantId() + 1;
 
             plants.Add(newPlant);
+        }
+        private void DeletePlant(object sender, RoutedEventArgs e)
+        {
+            DeletePlant dp = new DeletePlant();
+            dp.ShowDialog();
+
+            try
+            {
+                int delID = int.Parse(dp.deleteID.Text);
+                int lastId = lastPlantId();
+                if (delID <= lastId) 
+                {
+                    plants.RemoveAt(delID);
+                }
+                else 
+                {
+                    Close();
+                }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            
         }
         private int lastPlantId()
         {

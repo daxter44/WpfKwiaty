@@ -7,6 +7,18 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FF35895A" Offset="0.255"/>
+                <GradientStop Color="Black" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid.Style>
+            <Style/>
+        </Grid.Style>
+        <Grid.Effect>
+            <DropShadowEffect/>
+        </Grid.Effect>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="30"></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
@@ -20,24 +32,27 @@
             <RowDefinition Height="50"></RowDefinition>
         </Grid.RowDefinitions>
         <Label Grid.ColumnSpan="4" FontSize="32" HorizontalAlignment="Center" >Nasze rośliny</Label>
-        <DataGrid x:Name="dataTable" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="2" AutoGenerateColumns="False" >
+        <DataGrid x:Name="dataTable" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="1" Grid.RowSpan="2" AutoGenerateColumns="False" >
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding id}" Width="50">
+                <DataGridTextColumn Header="ID" Binding="{Binding id}" Width="40">
 
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="Nazwa" Binding="{Binding name}" Width="Auto">
+                <DataGridTextColumn Header="Nazwa" Binding="{Binding name}" Width="120">
 
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="Typ" Binding="{Binding type}" Width="Auto">
+                <DataGridTextColumn Header="Typ" Binding="{Binding type}" Width="100">
 
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="Data zasadzki" Binding="{Binding dateOfBirth, StringFormat=\{0:dd.MM.yyyy\}}" Width="Auto">
+                <DataGridTextColumn Header="Data zasadzki" Binding="{Binding dateOfBirth, StringFormat=\{0:dd.MM.yyyy\}}" Width="95">
 
                 </DataGridTextColumn>
 
             </DataGrid.Columns>
         </DataGrid>
         <Button Grid.Column="1" Grid.Row="3" Margin="5" Click="Button_Click">Dodaj nową</Button>
-        
+        <Button Grid.Column="2" Grid.Row="3" Margin="5" Click="DeletePlant">Usuń rośline</Button>
+        <Image HorizontalAlignment="Center" Grid.Column="2" Grid.Row="1" Source="/ogrod.jpg" Width="179"/>
+        <Calendar Grid.Column="2" Grid.Row="2" HorizontalAlignment="Center"/>
+
     </Grid>
 </Window>

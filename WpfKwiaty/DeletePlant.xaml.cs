@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WpfKwiaty.Models;
 
 namespace WpfKwiaty
 {
@@ -17,10 +18,11 @@ namespace WpfKwiaty
     /// </summary>
     public partial class DeletePlant : Window
     {
-        public DeletePlant()
+        public Plant deletePlant { get; set; }
+        public DeletePlant(Plant plant)
         {
             InitializeComponent();
-
+            this.deletePlant = plant;
         }
 
         private void DeleteButton(object sender, RoutedEventArgs e)

@@ -59,15 +59,17 @@ namespace WpfKwiaty
 
             Plant newPlant = new Plant();
             newPlant.name = cp.plantNme.Text;
-            newPlant.type = cp.plantType.Text;
+            newPlant.type = cp.typeList.Text;
             newPlant.id = lastPlantId() + 1;
+            //newPlant.dateOfBirth = cp.;
 
             plants.Add(newPlant);
         }
         private void DeletePlant(object sender, RoutedEventArgs e)
         {
-            DeletePlant dp = new DeletePlant();
+            DeletePlant dp = new DeletePlant((Plant)dataTable.SelectedItem);
             dp.ShowDialog();
+            
 
             try
             {
@@ -95,5 +97,36 @@ namespace WpfKwiaty
             return plants.Last().id;
         }
 
+        private void EditPlant(object sender, RoutedEventArgs e)
+        {
+            EditPlant ep = new EditPlant((Plant)dataTable.SelectedItem);
+            ep.ShowDialog();
+           // ep.editPlant;
+
+            int editID = int.Parse(ep.editID.Text);
+
+            if (editID == 1)
+            {
+                //   plants[0].nutrition = ep.dateNutrition.SelectedDate;
+                if(ep.myco.SelectedItem == "Tak") 
+                {
+                    plants[0].mycorrhiza = true;
+
+                }
+                else
+                {
+                    plants[0].mycorrhiza = false;
+                }
+
+           }
+            else if (editID == 2) 
+            {
+                //plants[1].nutrition = ep.dateNutrition.Text;
+            }
+
+            
+        }
+
+        
     }
 }

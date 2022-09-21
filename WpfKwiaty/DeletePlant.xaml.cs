@@ -27,6 +27,7 @@ namespace WpfKwiaty
 
         private void DeleteButton(object sender, RoutedEventArgs e)
         {
+           
             Close();
         }
 

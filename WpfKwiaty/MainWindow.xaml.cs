@@ -68,8 +68,15 @@ namespace WpfKwiaty
         private void DeletePlant(object sender, RoutedEventArgs e)
         {
             DeletePlant dp = new DeletePlant((Plant)dataTable.SelectedItem);
-            dp.ShowDialog();
-            plants.Remove((Plant)dataTable.SelectedItem);
+            const string m = "Czy aby napewno chcesz usunąć zaznaczoną roślinę?";
+            const string c = "Zamknij";
+            var result = MessageBox.Show(m, c, MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.Yes) 
+            {
+                plants.Remove((Plant)dataTable.SelectedItem);
+            }
+
+            //dp.ShowDialog();
             
         }
         private int lastPlantId()

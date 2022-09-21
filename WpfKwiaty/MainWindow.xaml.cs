@@ -69,27 +69,8 @@ namespace WpfKwiaty
         {
             DeletePlant dp = new DeletePlant((Plant)dataTable.SelectedItem);
             dp.ShowDialog();
-            
-
-            try
-            {
-                int delID = int.Parse(dp.deleteID.Text);
-                int lastId = lastPlantId();
-                if (delID <= lastId) 
-                {
-                    plants.RemoveAt(delID);
-                }
-                else 
-                {
-                    Close();
-                }
-
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
+          //plants.RemoveAt((int)dataTable.SelectedItem);
+            plants.Remove((Plant)dataTable.SelectedItem);
             
         }
         private int lastPlantId()
@@ -101,31 +82,21 @@ namespace WpfKwiaty
         {
             EditPlant ep = new EditPlant((Plant)dataTable.SelectedItem);
             ep.ShowDialog();
-           // ep.editPlant;
-
-            int editID = int.Parse(ep.editID.Text);
-
-            if (editID == 1)
+            // ep.editPlant;
+            
+            ep.editPlant.nutrition = ep.dateNutrition.SelectedDate;
+            if (ep.myco.SelectedItem == "Tak") 
             {
-                //   plants[0].nutrition = ep.dateNutrition.SelectedDate;
-                if(ep.myco.SelectedItem == "Tak") 
-                {
-                    plants[0].mycorrhiza = true;
+                ep.editPlant.mycorrhiza = true;
 
-                }
-                else
-                {
-                    plants[0].mycorrhiza = false;
-                }
-
-           }
-            else if (editID == 2) 
+            }
+            else 
             {
-                //plants[1].nutrition = ep.dateNutrition.Text;
+                ep.editPlant.mycorrhiza = false;
             }
 
-            
         }
+
 
         
     }

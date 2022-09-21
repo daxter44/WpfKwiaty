@@ -69,7 +69,6 @@ namespace WpfKwiaty
         {
             DeletePlant dp = new DeletePlant((Plant)dataTable.SelectedItem);
             dp.ShowDialog();
-          //plants.RemoveAt((int)dataTable.SelectedItem);
             plants.Remove((Plant)dataTable.SelectedItem);
             
         }

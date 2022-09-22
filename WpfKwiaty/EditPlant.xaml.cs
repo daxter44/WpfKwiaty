@@ -14,22 +14,22 @@ using WpfKwiaty.Models;
 namespace WpfKwiaty
 {
     /// <summary>
-    /// Logika interakcji dla klasy DeletePlant.xaml
+    /// Logika interakcji dla klasy EditPlant.xaml
     /// </summary>
-    public partial class DeletePlant : Window
+    public partial class EditPlant : Window
     {
-        public Plant deletePlant { get; set; }
-        public DeletePlant(Plant plant)
+        public Plant editPlant { get; set; }
+
+        public EditPlant(Plant plant) 
         {
             InitializeComponent();
-            this.deletePlant = plant;
+            this.editPlant = plant;
+
         }
 
-        private void DeleteButton(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-           
             Close();
         }
-
     }
 }

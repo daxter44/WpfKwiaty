@@ -38,6 +38,7 @@ namespace WpfKwiaty
             plant1.name = "Jabłoń";
             plant1.type = "drzewo";
             plant1.dateOfBirth = new DateTime(2020, 1,1);
+            plant1.nutrition = new DateTime(2022, 02, 03);
             Plant plant2 = new Plant();
             plant2.id = 2;
             plant2.name = "Grusza";
@@ -68,28 +69,15 @@ namespace WpfKwiaty
         private void DeletePlant(object sender, RoutedEventArgs e)
         {
             DeletePlant dp = new DeletePlant((Plant)dataTable.SelectedItem);
-            dp.ShowDialog();
-            
-
-            try
+            const string m = "Czy aby napewno chcesz usunąć zaznaczoną roślinę?";
+            const string c = "Zamknij";
+            var result = MessageBox.Show(m, c, MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.Yes) 
             {
-                int delID = int.Parse(dp.deleteID.Text);
-                int lastId = lastPlantId();
-                if (delID <= lastId) 
-                {
-                    plants.RemoveAt(delID);
-                }
-                else 
-                {
-                    Close();
-                }
-
+                plants.Remove((Plant)dataTable.SelectedItem);
             }
-            catch (Exception)
-            {
 
-                throw;
-            }
+            //dp.ShowDialog();
             
         }
         private int lastPlantId()
@@ -101,31 +89,26 @@ namespace WpfKwiaty
         {
             EditPlant ep = new EditPlant((Plant)dataTable.SelectedItem);
             ep.ShowDialog();
-           // ep.editPlant;
+            // ep.editPlant;
 
-            int editID = int.Parse(ep.editID.Text);
-
-            if (editID == 1)
+            try
             {
-                //   plants[0].nutrition = ep.dateNutrition.SelectedDate;
-                if(ep.myco.SelectedItem == "Tak") 
-                {
-                    plants[0].mycorrhiza = true;
+                //((Plant)dataTable.SelectedItem).nutrition = ep.dateNutrition.SelectedDate;
+                //((Plant)dataTable.SelectedItem).mycorrhiza = ep.myco.SelectedItem == "Tak";
+                //plants[(int)dataTable.SelectedItem].nutrition = ep.dateNutrition.SelectedDate;
 
-                }
-                else
-                {
-                    plants[0].mycorrhiza = false;
-                }
-
-           }
-            else if (editID == 2) 
+                var selectedIndex = ((Plant)dataTable.SelectedItem).id-1;
+                plants[selectedIndex].nutrition = ep.dateNutrition.SelectedDate;
+                plants[selectedIndex].mycorrhiza = ep.myco.SelectedItem == "Tak";
+                    }
+            catch (Exception)
             {
-                //plants[1].nutrition = ep.dateNutrition.Text;
+
+                throw;
             }
 
-            
         }
+
 
         
     }

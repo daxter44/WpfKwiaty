@@ -38,6 +38,7 @@ namespace WpfKwiaty
             plant1.name = "Jabłoń";
             plant1.type = "drzewo";
             plant1.dateOfBirth = new DateTime(2020, 1,1);
+            plant1.nutrition = new DateTime(2022, 02, 03);
             Plant plant2 = new Plant();
             plant2.id = 2;
             plant2.name = "Grusza";
@@ -89,16 +90,21 @@ namespace WpfKwiaty
             EditPlant ep = new EditPlant((Plant)dataTable.SelectedItem);
             ep.ShowDialog();
             // ep.editPlant;
-            
-            ep.editPlant.nutrition = ep.dateNutrition.SelectedDate;
-            if (ep.myco.SelectedItem == "Tak") 
-            {
-                ep.editPlant.mycorrhiza = true;
 
-            }
-            else 
+            try
             {
-                ep.editPlant.mycorrhiza = false;
+                //((Plant)dataTable.SelectedItem).nutrition = ep.dateNutrition.SelectedDate;
+                //((Plant)dataTable.SelectedItem).mycorrhiza = ep.myco.SelectedItem == "Tak";
+                //plants[(int)dataTable.SelectedItem].nutrition = ep.dateNutrition.SelectedDate;
+
+                var selectedIndex = ((Plant)dataTable.SelectedItem).id-1;
+                plants[selectedIndex].nutrition = ep.dateNutrition.SelectedDate;
+                plants[selectedIndex].mycorrhiza = ep.myco.SelectedItem == "Tak";
+                    }
+            catch (Exception)
+            {
+
+                throw;
             }
 
         }

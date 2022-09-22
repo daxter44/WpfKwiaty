@@ -15,6 +15,6 @@ namespace WpfKwiaty.Models
         public DateTime dateOfBirth { get; set; }
         public string type { get; set; }
         public DateTime? nutrition { get; set; }
-        public bool mycorrhiza { get; set; }
+        public bool? mycorrhiza { get; set; }
     }
 }

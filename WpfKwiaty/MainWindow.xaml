@@ -34,23 +34,23 @@
         <Label Grid.ColumnSpan="4" FontSize="32" HorizontalAlignment="Center" >Nasze rośliny</Label>
         <DataGrid x:Name="dataTable" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="1" Grid.RowSpan="2" AutoGenerateColumns="False" >
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding id}" Width="40">
+                <DataGridTextColumn Header="ID" Binding="{Binding id, Mode=TwoWay}" Width="40">
 
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="Nazwa" Binding="{Binding name}" Width="120">
+                <DataGridTextColumn Header="Nazwa" Binding="{Binding name, Mode=TwoWay}" Width="120">
 
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="Typ" Binding="{Binding type}" Width="100">
+                <DataGridTextColumn Header="Typ" Binding="{Binding type, Mode=TwoWay}" Width="100">
 
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="Data zasadzki" Binding="{Binding dateOfBirth, StringFormat=\{0:dd.MM.yyyy\}}" Width="95">
+                <DataGridTextColumn Header="Data zasadzki" Binding="{Binding dateOfBirth, StringFormat=\{0:dd.MM.yyyy\}, Mode=TwoWay}" Width="95">
 
                 </DataGridTextColumn>
 
-                <DataGridTextColumn Header="Nawożenie" Binding="{Binding nutrition, StringFormat=\{0:dd.MM.yyyy\}}" Width="95">
+                <DataGridTextColumn Header="Nawożenie" Binding="{Binding nutrition, StringFormat=\{0:dd.MM.yyyy\}, Mode=TwoWay}" Width="95">
                 </DataGridTextColumn>
 
-                <DataGridTextColumn Header="Mikoryza" Binding="{Binding mycorrhiza}" Width="70">
+                <DataGridTextColumn Header="Mikoryza" Binding="{Binding mycorrhiza, Mode=TwoWay}" Width="70">
                 </DataGridTextColumn>
 
             </DataGrid.Columns>

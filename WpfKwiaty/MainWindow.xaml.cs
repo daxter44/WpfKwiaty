@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -20,10 +22,18 @@ namespace WpfKwiaty
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, INotifyPropertyChanged
     {
         ObservableCollection<Plant> plants =new ObservableCollection<Plant>();
 
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void OnPropertyChanged(string prop)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(prop));
+            }
+        }
         public MainWindow()
         {
             InitializeComponent();
@@ -84,23 +94,20 @@ namespace WpfKwiaty
         {
             return plants.Last().id;
         }
-
         private void EditPlant(object sender, RoutedEventArgs e)
         {
             EditPlant ep = new EditPlant((Plant)dataTable.SelectedItem);
             ep.ShowDialog();
             // ep.editPlant;
-
+            
             try
             {
-                //((Plant)dataTable.SelectedItem).nutrition = ep.dateNutrition.SelectedDate;
-                //((Plant)dataTable.SelectedItem).mycorrhiza = ep.myco.SelectedItem == "Tak";
-                //plants[(int)dataTable.SelectedItem].nutrition = ep.dateNutrition.SelectedDate;
+                Plant editedPlant = ((EditPlantViewModel)ep.DataContext).plantToEdit;
 
                 var selectedIndex = ((Plant)dataTable.SelectedItem).id-1;
-                plants[selectedIndex].nutrition = ep.dateNutrition.SelectedDate;
-                plants[selectedIndex].mycorrhiza = ep.myco.SelectedItem == "Tak";
-                    }
+                plants[selectedIndex] = editedPlant;
+                OnPropertyChanged("plants");
+            }
             catch (Exception)
             {
 

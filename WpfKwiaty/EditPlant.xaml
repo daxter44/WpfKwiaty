@@ -30,13 +30,11 @@
         </Grid.RowDefinitions>
         <Label Grid.ColumnSpan="4" FontSize="32" HorizontalAlignment="Center" >Wybierz rośline do edycji</Label>
         <Label Content="Czy była stosowana mikoryza?" Grid.Column="1" HorizontalAlignment="Left" Height="46" Margin="0,35,0,0" Grid.Row="1" VerticalAlignment="Top" Width="175"/>
-        <ComboBox x:Name="myco" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2" Margin="0,35,15,36">
-            <ComboBoxItem Content="Tak"/>
-            <ComboBoxItem Content="Nie"/>
-
+        <ComboBox x:Name="myco" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2" Margin="0,35,15,36"  ItemsSource="{Binding CmbContent}" SelectedItem="{Binding mychoriza,  Mode=TwoWay}" >
+           
         </ComboBox>
         <Label Content="Podaj date nawożenia" Grid.Column="1" HorizontalAlignment="Left" Height="46" Margin="0,10,0,0" Grid.Row="2" VerticalAlignment="Top" Width="175"/>
-        <DatePicker x:Name="dateNutrition" Grid.Column="2" Grid.Row="2" Text="" />
+        <DatePicker x:Name="dateNutrition" Grid.Column="2" Grid.Row="2" Text="" SelectedDate="{Binding nutrition, Mode=TwoWay}" />
         <Button Grid.ColumnSpan="4" Grid.Row="4" Content="Zapisz" Click="Button_Click"/>
 
 

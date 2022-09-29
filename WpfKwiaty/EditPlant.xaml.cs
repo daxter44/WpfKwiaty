@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -17,13 +18,12 @@ namespace WpfKwiaty
     /// Logika interakcji dla klasy EditPlant.xaml
     /// </summary>
     public partial class EditPlant : Window
-    {
-        public Plant editPlant { get; set; }
+    {    
 
-        public EditPlant(Plant plant) 
+        public EditPlant(Plant plant)
         {
             InitializeComponent();
-            this.editPlant = plant;
+            DataContext = new EditPlantViewModel(plant);
 
         }
 

@@ -10,7 +10,7 @@ namespace WpfKwiaty
     {
         public Plant plantToEdit { get; set; }
         public string? mychoriza
-        {
+        { 
             get
             {
                 return plantToEdit.mycorrhiza ? "Tak": "Nie";

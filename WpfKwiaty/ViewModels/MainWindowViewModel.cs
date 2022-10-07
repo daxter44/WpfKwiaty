@@ -38,14 +38,19 @@ namespace WpfKwiaty.ViewModels
             }
         }
 
+
         public RelayCommand CreatePlantCommand { get; private set; }
         public RelayCommand DeletePlantCommand { get; private set; }
+        public RelayCommand EditPlantCommand { get; private set; }
 
         public MainWindowViewModel()
         {
             seedPlantList();
             CreatePlantCommand = new RelayCommand(createPlant);
             DeletePlantCommand = new RelayCommand(deletePlant);
+            EditPlantCommand = new RelayCommand(editPlant);
+            OnPropertyChanged("plants");
+
         }
 
         public void seedPlantList()
@@ -121,6 +126,7 @@ namespace WpfKwiaty.ViewModels
 
                 throw;
             }
+
 
         }
 

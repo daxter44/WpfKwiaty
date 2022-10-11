@@ -8,15 +8,19 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="MvvmTools\**" />
-    <EmbeddedResource Remove="MvvmTools\**" />
-    <None Remove="MvvmTools\**" />
-    <Page Remove="MvvmTools\**" />
+    <Compile Remove="Tools\**" />
+    <EmbeddedResource Remove="ools\**" />
+    <None Remove="Tools\**" />
+    <Page Remove="Tools\**" />
   </ItemGroup>
 
   <ItemGroup>
     <None Remove="ogrod.jpg" />
     <None Remove="ogrod1.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\source\repos\ClassLibraryMvvmArchitecture\ClassLibraryMvvmArchitecture\ClassLibraryMvvmArchitecture.csproj" />
   </ItemGroup>
 
   <ItemGroup>

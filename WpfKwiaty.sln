@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.32228.343
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfKwiaty", "WpfKwiaty\WpfKwiaty.csproj", "{B9BB61CE-645D-46F1-9C38-18AC8CB38CFD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9825B0EE-2535-4E78-8C46-441128EB202C} = {9825B0EE-2535-4E78-8C46-441128EB202C}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibraryMvvmArchitecture", "..\..\..\..\source\repos\ClassLibraryMvvmArchitecture\ClassLibraryMvvmArchitecture\ClassLibraryMvvmArchitecture.csproj", "{9825B0EE-2535-4E78-8C46-441128EB202C}"
 EndProject

@@ -7,10 +7,11 @@ using System.Numerics;
 using System.Text;
 using System.Windows;
 using WpfKwiaty.Models;
+using WpfKwiaty.MvvmTools;
 
 namespace WpfKwiaty.ViewModels
 {
-    class MainWindowViewModel
+    class MainWindowViewModel : ViewModelBase
     {
         private ObservableCollection<Plant> _plants = new ObservableCollection<Plant>();
         public ObservableCollection<Plant> Plants { 

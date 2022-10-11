@@ -8,6 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="MvvmTools\**" />
+    <EmbeddedResource Remove="MvvmTools\**" />
+    <None Remove="MvvmTools\**" />
+    <Page Remove="MvvmTools\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="ogrod.jpg" />
     <None Remove="ogrod1.jpg" />
   </ItemGroup>

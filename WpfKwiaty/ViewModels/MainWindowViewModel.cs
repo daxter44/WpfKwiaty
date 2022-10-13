@@ -5,6 +5,10 @@ using System.Data;
 using System.Linq;
 using System.Numerics;
 using System.Text;
+using System.Diagnostics;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.IO;
 using System.Windows;
 using WpfKwiaty.Models;
 using WpfKwiaty.MvvmTools;
@@ -50,6 +54,7 @@ namespace WpfKwiaty.ViewModels
             DeletePlantCommand = new RelayCommand(deletePlant);
             EditPlantCommand = new RelayCommand(editPlant);
             OnPropertyChanged("plants");
+            Serialization();
 
         }
 
@@ -90,9 +95,19 @@ namespace WpfKwiaty.ViewModels
             newPlant.name = cp.plantNme.Text;
             newPlant.type = cp.typeList.Text;
             newPlant.id = lastPlantId() + 1;
-            //newPlant.dateOfBirth = cp.;
+            newPlant.dateOfBirth = (DateTime)cp.date.SelectedDate;
+
+            if (cp.micoList.Text == "Tak") 
+            {
+                newPlant.mycorrhiza = true;
+            }
+            else 
+            {
+                newPlant.mycorrhiza = false;
+            }
 
             Plants.Add(newPlant);
+            Serialization();
         }
 
         private void deletePlant(object obj)
@@ -104,6 +119,8 @@ namespace WpfKwiaty.ViewModels
             if (result == MessageBoxResult.Yes)
             {
                 Plants.Remove(SelectedPlant);
+                Serialization();
+
             }
         }
 
@@ -120,6 +137,8 @@ namespace WpfKwiaty.ViewModels
                 var selectedIndex = (SelectedPlant).id - 1;
                 Plants[selectedIndex] = editedPlant;
                 OnPropertyChanged("plants");
+                Serialization();
+
             }
             catch (Exception)
             {
@@ -127,6 +146,14 @@ namespace WpfKwiaty.ViewModels
                 throw;
             }
 
+
+        }
+
+        public void Serialization() 
+        {
+            string fileName = "plants.json";
+            string jsonString = JsonSerializer.Serialize(Plants);
+            File.WriteAllText(fileName, jsonString);
 
         }
 

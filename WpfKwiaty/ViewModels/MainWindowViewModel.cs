@@ -8,10 +8,11 @@ using System.Text;
 using System.Diagnostics;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 using System.IO;
 using System.Windows;
 using WpfKwiaty.Models;
-using WpfKwiaty.MvvmTools;
+using MvvmArchitecture;
 
 namespace WpfKwiaty.ViewModels
 {
@@ -79,6 +80,7 @@ namespace WpfKwiaty.ViewModels
             Plants.Add(plant1);
             Plants.Add(plant2);
             Plants.Add(plant3);
+
         }
 
         private int lastPlantId()
@@ -152,7 +154,7 @@ namespace WpfKwiaty.ViewModels
         public void Serialization() 
         {
             string fileName = "plants.json";
-            string jsonString = JsonSerializer.Serialize(Plants);
+            string jsonString = System.Text.Json.JsonSerializer.Serialize(Plants);
             File.WriteAllText(fileName, jsonString);
 
         }

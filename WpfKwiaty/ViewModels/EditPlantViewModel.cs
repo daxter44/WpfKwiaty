@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 using WpfKwiaty.Models;
+using MvvmArchitecture;
 
 namespace WpfKwiaty.ViewModels
 {
-    public class EditPlantViewModel
+    public class EditPlantViewModel : ViewModelBase
 
     {
         public Plant plantToEdit { get; set; }

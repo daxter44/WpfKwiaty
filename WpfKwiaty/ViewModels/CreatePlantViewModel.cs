@@ -70,9 +70,9 @@ namespace WpfKwiaty.ViewModels
                 NewPlant.mycorrhiza = (value == "Tak");
             }
         }
-        public CreatePlantViewModel(Plant NewPlant)
+        public CreatePlantViewModel()
         {
-            this.NewPlant = NewPlant;
+            this.NewPlant = new Plant();
         }
     }
 }

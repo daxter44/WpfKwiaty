@@ -87,7 +87,7 @@ namespace WpfKwiaty.ViewModels
             cp.ShowDialog();
             Plant NewPlant = ((CreatePlantViewModel)cp.DataContext).NewPlant;
 
-            Plant newPlant = new Plant();
+           /* Plant newPlant = new Plant();
             newPlant.name = cp.plantNme.Text;
             newPlant.type = cp.typeList.Text;
             newPlant.id = lastPlantId() + 1;
@@ -100,9 +100,9 @@ namespace WpfKwiaty.ViewModels
             else 
             {
                 newPlant.mycorrhiza = false;
-            }
+            }*/
 
-            Plants.Add(newPlant);
+            Plants.Add(NewPlant);
             OnPropertyChanged("plants");
             Serialization();
         }

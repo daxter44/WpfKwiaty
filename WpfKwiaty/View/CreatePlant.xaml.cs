@@ -21,11 +21,11 @@ namespace WpfKwiaty
     /// </summary>
     public partial class CreatePlant : Window
     {
-
+        //public newPlant;
         public CreatePlant()
         {
             InitializeComponent();
-          //DataContext = new CreatePlantViewModel();
+            DataContext = new CreatePlantViewModel();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

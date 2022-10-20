@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Data;
 using System.Linq;
-using System.Numerics;
-using System.Text;
+using System.IO;
 using System.Windows;
 using WpfKwiaty.Models;
-using WpfKwiaty.MvvmTools;
+using MvvmArchitecture;
 
 namespace WpfKwiaty.ViewModels
 {
@@ -50,6 +48,7 @@ namespace WpfKwiaty.ViewModels
             DeletePlantCommand = new RelayCommand(deletePlant);
             EditPlantCommand = new RelayCommand(editPlant);
             OnPropertyChanged("plants");
+            Serialization();
 
         }
 
@@ -74,6 +73,7 @@ namespace WpfKwiaty.ViewModels
             Plants.Add(plant1);
             Plants.Add(plant2);
             Plants.Add(plant3);
+
         }
 
         private int lastPlantId()
@@ -85,25 +85,40 @@ namespace WpfKwiaty.ViewModels
         {
             CreatePlant cp = new CreatePlant();
             cp.ShowDialog();
+            Plant NewPlant = ((CreatePlantViewModel)cp.DataContext).NewPlant;
 
-            Plant newPlant = new Plant();
+           /* Plant newPlant = new Plant();
             newPlant.name = cp.plantNme.Text;
             newPlant.type = cp.typeList.Text;
             newPlant.id = lastPlantId() + 1;
-            //newPlant.dateOfBirth = cp.;
+            newPlant.dateOfBirth = (DateTime)cp.date.SelectedDate;
 
-            Plants.Add(newPlant);
+            if (cp.micoList.Text == "Tak") 
+            {
+                newPlant.mycorrhiza = true;
+            }
+            else 
+            {
+                newPlant.mycorrhiza = false;
+            }*/
+
+            Plants.Add(NewPlant);
+            OnPropertyChanged("plants");
+            Serialization();
         }
 
         private void deletePlant(object obj)
         {
             DeletePlant dp = new DeletePlant(SelectedPlant);
+            Plant PlantToDelete = ((DeletePlantViewModel)dp.DataContext).PlantToDelete;
             const string m = "Czy aby napewno chcesz usunąć zaznaczoną roślinę?";
             const string c = "Zamknij";
             var result = MessageBox.Show(m, c, MessageBoxButton.YesNo);
             if (result == MessageBoxResult.Yes)
             {
                 Plants.Remove(SelectedPlant);
+                Serialization();
+
             }
         }
 
@@ -120,6 +135,8 @@ namespace WpfKwiaty.ViewModels
                 var selectedIndex = (SelectedPlant).id - 1;
                 Plants[selectedIndex] = editedPlant;
                 OnPropertyChanged("plants");
+                Serialization();
+
             }
             catch (Exception)
             {
@@ -127,6 +144,14 @@ namespace WpfKwiaty.ViewModels
                 throw;
             }
 
+
+        }
+
+        public void Serialization() 
+        {
+            string fileName = "plants.json";
+            string jsonString = System.Text.Json.JsonSerializer.Serialize(Plants);
+            File.WriteAllText(fileName, jsonString);
 
         }
 

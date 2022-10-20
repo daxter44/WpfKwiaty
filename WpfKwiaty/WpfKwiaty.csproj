@@ -8,19 +8,19 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Tools\**" />
-    <EmbeddedResource Remove="ools\**" />
-    <None Remove="Tools\**" />
-    <Page Remove="Tools\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Remove="ogrod.jpg" />
     <None Remove="ogrod1.jpg" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\source\repos\ClassLibraryMvvmArchitecture\ClassLibraryMvvmArchitecture\ClassLibraryMvvmArchitecture.csproj" />
+    <PackageReference Include="MvvmArchitecture" Version="1.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="MvvmArchitecture">
+      <HintPath>..\..\..\..\..\source\repos\MvvmArchitecture\bin\Debug\netcoreapp3.1\MvvmArchitecture.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>

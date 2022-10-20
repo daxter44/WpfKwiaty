@@ -1,14 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Data;
 using System.Linq;
-using System.Numerics;
-using System.Text;
-using System.Diagnostics;
-using System.Text.Json;
-using System.Text.Json.Serialization;
-using Newtonsoft.Json;
 using System.IO;
 using System.Windows;
 using WpfKwiaty.Models;
@@ -92,6 +85,7 @@ namespace WpfKwiaty.ViewModels
         {
             CreatePlant cp = new CreatePlant();
             cp.ShowDialog();
+            Plant NewPlant = ((CreatePlantViewModel)cp.DataContext).NewPlant;
 
             Plant newPlant = new Plant();
             newPlant.name = cp.plantNme.Text;
@@ -109,12 +103,14 @@ namespace WpfKwiaty.ViewModels
             }
 
             Plants.Add(newPlant);
+            OnPropertyChanged("plants");
             Serialization();
         }
 
         private void deletePlant(object obj)
         {
             DeletePlant dp = new DeletePlant(SelectedPlant);
+            Plant PlantToDelete = ((DeletePlantViewModel)dp.DataContext).PlantToDelete;
             const string m = "Czy aby napewno chcesz usunąć zaznaczoną roślinę?";
             const string c = "Zamknij";
             var result = MessageBox.Show(m, c, MessageBoxButton.YesNo);

@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfKwiaty"
-        xmlns:Collections="clr-namespace:System.Collections;assembly=System.Runtime.Extensions" x:Class="WpfKwiaty.CreatePlant"
+        xmlns:Collections="clr-namespace:System.Collections;assembly=System.Runtime.Extensions" xmlns:viewmodels="clr-namespace:WpfKwiaty.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:CreatePlantViewModel}" x:Class="WpfKwiaty.CreatePlant"
         mc:Ignorable="d"
         Title="CreatePlant" Height="400" Width="500">
     <Grid>
@@ -35,10 +35,10 @@
         </Grid.RowDefinitions>
         <Label Grid.ColumnSpan="4" FontSize="32" HorizontalAlignment="Center" Content="Nowa roślina" />
         <Label Grid.Column="1" Grid.Row="1" Content="Nazwa rośliny"/>
-        <TextBox Grid.Column="2" Grid.Row="1" x:Name="plantNme" Text=""/>
+        <TextBox Grid.Column="2" Grid.Row="1" x:Name="plantNme" Text="{Binding name}"/>
         <Label Grid.Column="1" Grid.Row="2" Content="Typ rośliny" />
         <Button Grid.ColumnSpan="4" Grid.Row="5" Click="Button_Click" Content="Dodaj" Margin="0,46,0,0" Grid.RowSpan="2"/>
-        <ComboBox x:Name="typeList" Grid.Column="2" Grid.Row="2">
+        <ComboBox x:Name="typeList" ItemsSource="{Binding CreatePlantCommand}" SelectedItem="{Binding type,  Mode=TwoWay}" Grid.Column="2" Grid.Row="2">
             <ComboBoxItem Content="Kwiat"/>
             <ComboBoxItem Content="Krzewinka"/>
             <ComboBoxItem Content="Krzew"/>
@@ -47,9 +47,9 @@
 
         </ComboBox>
         <Label Content="Data zasadzenia" Grid.Column="1" Grid.Row="3"/>
-        <DatePicker x:Name="date" Grid.Column="2" Grid.Row="3" Text="" />
+        <DatePicker x:Name="date" Grid.Column="2" Grid.Row="3" SelectedDate="{Binding date, Mode=TwoWay}" Text="" />
         <Label Content="Mikoryza" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="4"/>
-        <ComboBox x:Name="micoList" Grid.Column="2" Grid.Row="3" Margin="0,56,0,55" Grid.RowSpan="3" >
+        <ComboBox x:Name="micoList" ItemsSource="{Binding CreatePlantCommand}" SelectedItem="{Binding mychoriza,  Mode=TwoWay}" Grid.Column="2" Grid.Row="3" Margin="0,56,0,55" Grid.RowSpan="3" >
             <ComboBoxItem Content="Tak"/>
             <ComboBoxItem Content="Nie"/>
         </ComboBox>

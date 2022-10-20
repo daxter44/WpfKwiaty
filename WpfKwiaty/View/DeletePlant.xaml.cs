@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WpfKwiaty.Models;
+using WpfKwiaty.ViewModels;
 
 namespace WpfKwiaty
 {
@@ -22,6 +23,7 @@ namespace WpfKwiaty
         public DeletePlant(Plant plant)
         {
             InitializeComponent();
+            DataContext = new DeletePlantViewModel(deletePlant);
             this.deletePlant = plant;
         }
 
